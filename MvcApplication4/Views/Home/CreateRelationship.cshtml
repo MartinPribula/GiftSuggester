@@ -1,0 +1,82 @@
+﻿@model MvcApplication4.Models.Recipient
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create new relationship</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Recipient</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.name)
+            @Html.ValidationMessageFor(model => model.name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.surname)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.surname)
+            @Html.ValidationMessageFor(model => model.surname)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.relationship)
+        </div>
+        <div class="editor-field">
+            @{List<SelectListItem> relationships = new List<SelectListItem>() 
+                { 
+                    new SelectListItem { Text = "girlfriend", Value = "girlfriend", Selected = true },
+                    new SelectListItem { Text = "wife", Value = "wife", Selected = false },
+                    new SelectListItem { Text = "fiance", Value = "fiance", Selected = false },
+                    new SelectListItem { Text = "mother", Value = "mother", Selected = false },
+                    new SelectListItem { Text = "sister", Value = "sister", Selected = false },
+                    new SelectListItem { Text = "grandmother", Value = "grandmother", Selected = false },
+                    new SelectListItem { Text = "friend, nothing more", Value = "friend, nothing more", Selected = false },
+                    new SelectListItem { Text = "I want her!", Value = "I want her!", Selected = false },
+                    new SelectListItem { Text = "That bitch friendzoned me!!!", Value = "That bitch friendzoned me!!!", Selected = false }
+                };
+            }
+            @Html.DropDownListFor(model => model.relationship, relationships)
+            @Html.ValidationMessageFor(model => model.relationship)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.relationshipLength)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.relationshipLength)
+            @Html.ValidationMessageFor(model => model.relationshipLength)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.age)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.age)
+            @Html.ValidationMessageFor(model => model.age)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "MyRecipients")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

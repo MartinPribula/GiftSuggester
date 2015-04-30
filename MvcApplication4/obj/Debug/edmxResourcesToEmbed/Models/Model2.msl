@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="GiftsModelStoreContainer" CdmEntityContainer="SuggestEntities">
+    <EntitySetMapping Name="Gifts">
+      <EntityTypeMapping TypeName="GiftsModel.Gift">
+        <MappingFragment StoreEntitySet="Gift">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="shop" ColumnName="shop" />
+          <ScalarProperty Name="price" ColumnName="price" />
+          <ScalarProperty Name="relationship" ColumnName="relationship" />
+          <ScalarProperty Name="relationshipLengthFrom" ColumnName="relationshipLengthFrom" />
+          <ScalarProperty Name="relationshipLengthTo" ColumnName="relationshipLengthTo" />
+          <ScalarProperty Name="occasion" ColumnName="occasion" />
+          <ScalarProperty Name="ageFrom" ColumnName="ageFrom" />
+          <ScalarProperty Name="ageTo" ColumnName="ageTo" />
+          <ScalarProperty Name="job" ColumnName="job" />
+          <ScalarProperty Name="hobbies" ColumnName="hobbies" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Recipients">
+      <EntityTypeMapping TypeName="GiftsModel.Recipient">
+        <MappingFragment StoreEntitySet="Recipient">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="surname" ColumnName="surname" />
+          <ScalarProperty Name="relationship" ColumnName="relationship" />
+          <ScalarProperty Name="relationshipLength" ColumnName="relationshipLength" />
+          <ScalarProperty Name="age" ColumnName="age" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Suggestions">
+      <EntityTypeMapping TypeName="GiftsModel.Suggestion">
+        <MappingFragment StoreEntitySet="Suggestion">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="idUser" ColumnName="idUser" />
+          <ScalarProperty Name="idGift" ColumnName="idGift" />
+          <ScalarProperty Name="relationship" ColumnName="relationship" />
+          <ScalarProperty Name="relationshipLength" ColumnName="relationshipLength" />
+          <ScalarProperty Name="occasion" ColumnName="occasion" />
+          <ScalarProperty Name="age" ColumnName="age" />
+          <ScalarProperty Name="job" ColumnName="job" />
+          <ScalarProperty Name="hobbies" ColumnName="hobbies" />
+          <ScalarProperty Name="rating" ColumnName="rating" />
+          <ScalarProperty Name="priceTo" ColumnName="priceTo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

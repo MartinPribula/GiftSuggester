@@ -1,0 +1,71 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GiftsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="SuggestEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="Gifts" EntityType="GiftsModel.Gift" />
+    <EntitySet Name="Recipients" EntityType="GiftsModel.Recipient" />
+    <EntitySet Name="Suggestions" EntityType="GiftsModel.Suggestion" />
+    <AssociationSet Name="FK_Suggestion_Gift" Association="GiftsModel.FK_Suggestion_Gift">
+      <End Role="Gift" EntitySet="Gifts" />
+      <End Role="Suggestion" EntitySet="Suggestions" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Gift">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="shop" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="price" Type="Decimal" Precision="13" Scale="4" />
+    <Property Name="relationship" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="relationshipLengthFrom" Type="Int32" Nullable="false" />
+    <Property Name="relationshipLengthTo" Type="Int32" Nullable="false" />
+    <Property Name="occasion" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="ageFrom" Type="Int32" Nullable="false" />
+    <Property Name="ageTo" Type="Int32" Nullable="false" />
+    <Property Name="job" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="hobbies" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Suggestions" Relationship="GiftsModel.FK_Suggestion_Gift" FromRole="Gift" ToRole="Suggestion" />
+  </EntityType>
+  <EntityType Name="Recipient">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="idUser" Type="Int32" Nullable="false" />
+    <Property Name="name" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="surname" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="relationship" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="relationshipLength" Type="Int32" Nullable="false" />
+    <Property Name="age" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Suggestion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="idUser" Type="Int32" />
+    <Property Name="idGift" Type="Int32" Nullable="false" />
+    <Property Name="relationship" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="relationshipLength" Type="Int32" Nullable="false" />
+    <Property Name="occasion" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="age" Type="Int32" Nullable="false" />
+    <Property Name="job" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="hobbies" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="rating" Type="Int32" />
+    <Property Name="priceTo" Type="Decimal" Nullable="false" Precision="13" Scale="4" />
+    <NavigationProperty Name="Gift" Relationship="GiftsModel.FK_Suggestion_Gift" FromRole="Suggestion" ToRole="Gift" />
+  </EntityType>
+  <Association Name="FK_Suggestion_Gift">
+    <End Role="Gift" Type="GiftsModel.Gift" Multiplicity="1" />
+    <End Role="Suggestion" Type="GiftsModel.Suggestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gift">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Suggestion">
+        <PropertyRef Name="idGift" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

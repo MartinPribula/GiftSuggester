@@ -1,0 +1,102 @@
+﻿@model MvcApplication4.Models.Suggestion
+
+@{
+    ViewBag.Title = "Suggest";
+}
+
+<h2>Get your gift suggestion</h2>
+</br>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Suggestion</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.relationship)
+        </div>
+        <div class="editor-field">
+            @{List<SelectListItem> relationships = new List<SelectListItem>() 
+                { 
+                    new SelectListItem { Text = "girlfriend", Value = "girlfriend", Selected = false },
+                    new SelectListItem { Text = "wife", Value = "wife", Selected = false },
+                    new SelectListItem { Text = "fiance", Value = "fiance", Selected = false },
+                    new SelectListItem { Text = "mother", Value = "mother", Selected = false },
+                    new SelectListItem { Text = "sister", Value = "sister", Selected = false },
+                    new SelectListItem { Text = "grandmother", Value = "grandmother", Selected = false },
+                    new SelectListItem { Text = "friend, nothing more", Value = "friend", Selected = false },
+                    new SelectListItem { Text = "I want her!", Value = "I want her!", Selected = false },
+                    new SelectListItem { Text = "That bitch friendzoned me!!!", Value = "That bitch friendzoned me!!!", Selected = false }
+                };
+            }
+            @Html.DropDownListFor(model => model.relationship, relationships)
+            @Html.ValidationMessageFor(model => model.relationship)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.relationshipLength)
+        </div>
+        <div class="editor-field">           
+            @Html.EditorFor(model => model.relationshipLength)
+            @Html.ValidationMessageFor(model => model.relationshipLength)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.occasion)
+        </div>
+        <div class="editor-field">
+            @{List<SelectListItem> occasions = new List<SelectListItem>() 
+                { 
+                    new SelectListItem { Text = "I dont need occaison to give gifts!", Value = "none", Selected = true },
+                    new SelectListItem { Text = "Birthday", Value = "birthday", Selected = false },
+                    new SelectListItem { Text = "Christmas", Value = "christmas", Selected = false },
+                    new SelectListItem { Text = "Aniversary", Value = "aniversary", Selected = false },
+                    new SelectListItem { Text = "Name-day", Value = "name-day", Selected = false }
+                };
+            }
+            @Html.DropDownListFor(model => model.occasion, occasions)
+            @Html.ValidationMessageFor(model => model.occasion)           
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.age)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.age)
+            @Html.ValidationMessageFor(model => model.age)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.job)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.job)
+            @Html.ValidationMessageFor(model => model.job)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.hobbies)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.hobbies)
+            @Html.ValidationMessageFor(model => model.hobbies)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.priceTo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.priceTo)
+            @Html.ValidationMessageFor(model => model.priceTo)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

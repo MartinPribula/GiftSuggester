@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="GiftsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="GiftsModelStoreContainer">
+    <EntitySet Name="Gift" EntityType="GiftsModel.Store.Gift" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Recipient" EntityType="GiftsModel.Store.Recipient" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Suggestion" EntityType="GiftsModel.Store.Suggestion" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Suggestion_Gift" Association="GiftsModel.Store.FK_Suggestion_Gift">
+      <End Role="Gift" EntitySet="Gift" />
+      <End Role="Suggestion" EntitySet="Suggestion" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Gift">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="shop" Type="nvarchar(max)" />
+    <Property Name="price" Type="decimal" Precision="13" Scale="4" />
+    <Property Name="relationship" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="relationshipLengthFrom" Type="int" Nullable="false" />
+    <Property Name="relationshipLengthTo" Type="int" Nullable="false" />
+    <Property Name="occasion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ageFrom" Type="int" Nullable="false" />
+    <Property Name="ageTo" Type="int" Nullable="false" />
+    <Property Name="job" Type="nvarchar(max)" />
+    <Property Name="hobbies" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Recipient">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idUser" Type="int" Nullable="false" />
+    <Property Name="name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="surname" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="relationship" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="relationshipLength" Type="int" Nullable="false" />
+    <Property Name="age" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Suggestion">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="idUser" Type="int" />
+    <Property Name="idGift" Type="int" Nullable="false" />
+    <Property Name="relationship" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="relationshipLength" Type="int" Nullable="false" />
+    <Property Name="occasion" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="age" Type="int" Nullable="false" />
+    <Property Name="job" Type="nvarchar(max)" />
+    <Property Name="hobbies" Type="nvarchar(max)" />
+    <Property Name="rating" Type="int" />
+    <Property Name="priceTo" Type="decimal" Nullable="false" Precision="13" Scale="4" />
+  </EntityType>
+  <Association Name="FK_Suggestion_Gift">
+    <End Role="Gift" Type="GiftsModel.Store.Gift" Multiplicity="1" />
+    <End Role="Suggestion" Type="GiftsModel.Store.Suggestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Gift">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Suggestion">
+        <PropertyRef Name="idGift" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

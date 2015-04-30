@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "GiftSuggester";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Message</h1>
+            </hgroup>
+            <p>
+                
+            </p>
+        </div>
+    </section>
+}
+<!--<h3>You can start by trying our superb gift sugester.</h3>-->
+
+    <ol class="introduction">
+        <li>Have you ever find yourself in a situation like this: Birthday of you girlfriend, wife or other close women are getting closer and closer and you still don't know what to buy for her?</li>
+        <li>Well you came to the perfect place to solve problems like this.</li>
+        <li>Our Gift Suggeser&reg; is a perfect tool for you! </li>
+        <li>With his enormous knowledge of all kinds of women it will recommend you a perfect gift for any women you like.</li>
+        <li>@Html.ActionLink("You can try it out here!", "Suggest", "Home")</li>
+    </ol>

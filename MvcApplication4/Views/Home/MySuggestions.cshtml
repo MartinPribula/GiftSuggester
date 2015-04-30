@@ -1,0 +1,80 @@
+﻿@model IEnumerable<MvcApplication4.Models.Suggestion>
+
+@{
+    ViewBag.Title = "My Suggestions";
+}
+
+<h2>My suggestions</h2>
+
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idGift)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.relationship)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.relationshipLength)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.occasion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.job)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hobbies)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rating)
+        </th>
+        <th></th>
+    </tr>
+
+@{int userId = Convert.ToInt32(Session["LogedUserId"]);}
+
+@foreach (var item in Model) {
+    if(userId == item.idUser){
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gift.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.relationship)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.relationshipLength)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.occasion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.job)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.hobbies)
+        </td> 
+        @if(item.rating != null){     
+        <td>
+            @Html.DisplayFor(modelItem => item.rating)
+        </td>       
+        }
+        else
+        {         
+        <td>
+            @Html.ActionLink("Add rating", "addFeedback", new { id=item.id })
+        </td>
+        }
+    </tr>
+}
+}
+
+</table>

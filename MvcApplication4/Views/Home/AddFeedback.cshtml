@@ -1,0 +1,95 @@
+﻿@model MvcApplication4.Models.Suggestion
+@using MvcApplication4.Models;
+
+@{
+    ViewBag.Title = "AddFeedback";
+}
+
+<h2>Add Rating</h2>
+<br>
+
+<h3>You are creating rating for this suggestion:</h3>
+
+ <table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idGift)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.relationship)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.relationshipLength)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.occasion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.job)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.hobbies)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rating)
+        </th>
+        <th></th>
+    </tr>
+        <tr>
+        <td>
+            @Html.DisplayFor(model => model.Gift.name)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.relationship)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.relationshipLength)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.occasion)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.age)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.job)
+        </td>
+        <td>
+            @Html.DisplayFor(model => model.hobbies)
+        </td> 
+    </table>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset class="feedbackForm">
+        <legend>Suggestion</legend>
+
+        @Html.HiddenFor(model => model.id)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.rating)
+        </div>
+        @for (int i = 0; i < 10; i++){
+        <div class="editor-field" style="display:inline; width:20px">
+            @i
+            @Html.RadioButtonFor(model => model.rating, i)
+            @Html.ValidationMessageFor(model => model.rating)
+        </div>
+        }
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "MySuggestions")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

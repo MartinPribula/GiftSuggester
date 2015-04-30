@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Welcome!";
+}
+
+
+@if (Session["LogedUsername"] != null)
+{
+    <h2>Welcome @Session["LogedUsername"].ToString()!</h2>
+    <ol class="login">
+        <li>You have been succesfully logged into your account.</li>
+        <li>Now you can review your @Html.ActionLink("suggestions", "MySuggestions", "Home") and @Html.ActionLink("recipients", "MyRecipients", "Home").</li>
+        <li>@Html.ActionLink("You can manage your account here.", "Manage", "Home")</li>
+    </ol>
+}
