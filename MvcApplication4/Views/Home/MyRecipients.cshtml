@@ -51,9 +51,9 @@
             </td>
             <td>
                 @Html.ActionLink("Edit", "EditRelationship", new { id=item.id }) |       
-                @Html.ActionLink("Delete", "DeleteRelationship", new { id = item.id }) |
-                <!--Html.ActionLink("Get gift", "Suggest", new { id = item.id }) |-->
-                @Html.ActionLink("View suggestions", "Suggestions", new { id = item.id })
+                @Html.ActionLink("Delete", "DeleteRelationship", new { id = item.id }) |                
+                @Html.ActionLink("View suggestions", "SuggestionsForRecipient", new { id = item.id }) |
+                @Html.ActionLink("Get gift", "SuggestToRecipient", new { id = item.id })
 
             </td>
         </tr>

@@ -32,7 +32,7 @@ namespace MvcApplication4.Models
         public string userName { get; set; }
         [Required]
         [DataType(DataType.Password)]
-        [Remote("doesPasswordExist", "Home", HttpMethod = "POST", ErrorMessage = "User name already exists. Please enter a different user name.")]
+        [Remote("doesPasswordMatch", "Home", HttpMethod = "POST", ErrorMessage = "Passwords do not match.")]
         [Display(Name = "Current password")]
         public string password { get; set; }
         [Required]

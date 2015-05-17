@@ -1,0 +1,73 @@
+﻿@model IEnumerable<MvcApplication4.Models.Suggestion>
+
+@{
+    ViewBag.Title = "Suggestions For Recipient";
+}
+
+<h2>Suggestions of @ViewBag.Name @ViewBag.Surname</h2>
+
+<p>
+    @ViewBag.Name is currently @ViewBag.Age years old. She is your @ViewBag.Relationship.
+    @{int idR = Convert.ToInt32(ViewBag.Id);}<br>
+    <br />
+    @Html.ActionLink("Get her a new gift", "SuggestToRecipient", new { id=idR })
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.idGift)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.relationshipLength)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.occasion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.timeStamp)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.rating)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    //int idR = Convert.ToInt32(ViewBag.Id);
+    if (idR == item.idRecipient)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Gift.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.relationshipLength)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.occasion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.age)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.timeStamp)
+        </td>
+        @if(item.rating != null){ 
+        <td>
+            @Html.DisplayFor(modelItem => item.rating)
+        </td>
+        }
+        else
+        {
+        <td>
+            @Html.ActionLink("Add rating", "addFeedback", new { id=item.id })
+        </td>  
+        }
+    </tr>
+    }
+}
+
+</table>

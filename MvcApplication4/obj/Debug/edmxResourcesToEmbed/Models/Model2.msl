@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="GiftsModelStoreContainer" CdmEntityContainer="SuggestEntities">
+  <EntityContainerMapping StorageEntityContainer="GiftsModelStoreContainer" CdmEntityContainer="GifterEntities">
     <EntitySetMapping Name="Gifts">
       <EntityTypeMapping TypeName="GiftsModel.Gift">
         <MappingFragment StoreEntitySet="Gift">
@@ -16,6 +16,7 @@
           <ScalarProperty Name="ageTo" ColumnName="ageTo" />
           <ScalarProperty Name="job" ColumnName="job" />
           <ScalarProperty Name="hobbies" ColumnName="hobbies" />
+          <ScalarProperty Name="repetition" ColumnName="repetition" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -46,6 +47,17 @@
           <ScalarProperty Name="hobbies" ColumnName="hobbies" />
           <ScalarProperty Name="rating" ColumnName="rating" />
           <ScalarProperty Name="priceTo" ColumnName="priceTo" />
+          <ScalarProperty Name="idRecipient" ColumnName="idRecipient" />
+          <ScalarProperty Name="timeStamp" ColumnName="timeStamp" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="GiftsModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="password" ColumnName="password" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

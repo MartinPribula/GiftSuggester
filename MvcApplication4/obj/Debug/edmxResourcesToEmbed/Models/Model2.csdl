@@ -1,11 +1,24 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Schema Namespace="GiftsModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
-  <EntityContainer Name="SuggestEntities" p1:LazyLoadingEnabled="true">
+  <EntityContainer Name="GifterEntities" p1:LazyLoadingEnabled="true">
     <EntitySet Name="Gifts" EntityType="GiftsModel.Gift" />
     <EntitySet Name="Recipients" EntityType="GiftsModel.Recipient" />
     <EntitySet Name="Suggestions" EntityType="GiftsModel.Suggestion" />
+    <EntitySet Name="Users" EntityType="GiftsModel.User" />
     <AssociationSet Name="FK_Suggestion_Gift" Association="GiftsModel.FK_Suggestion_Gift">
       <End Role="Gift" EntitySet="Gifts" />
+      <End Role="Suggestion" EntitySet="Suggestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Recipient_User" Association="GiftsModel.FK_Recipient_User">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Recipient" EntitySet="Recipients" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Suggestion_Recipient" Association="GiftsModel.FK_Suggestion_Recipient">
+      <End Role="Recipient" EntitySet="Recipients" />
+      <End Role="Suggestion" EntitySet="Suggestions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Suggestion_User" Association="GiftsModel.FK_Suggestion_User">
+      <End Role="User" EntitySet="Users" />
       <End Role="Suggestion" EntitySet="Suggestions" />
     </AssociationSet>
   </EntityContainer>
@@ -25,6 +38,7 @@
     <Property Name="ageTo" Type="Int32" Nullable="false" />
     <Property Name="job" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="hobbies" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="repetition" Type="Int32" Nullable="false" />
     <NavigationProperty Name="Suggestions" Relationship="GiftsModel.FK_Suggestion_Gift" FromRole="Gift" ToRole="Suggestion" />
   </EntityType>
   <EntityType Name="Recipient">
@@ -38,6 +52,8 @@
     <Property Name="relationship" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="relationshipLength" Type="Int32" Nullable="false" />
     <Property Name="age" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="GiftsModel.FK_Recipient_User" FromRole="Recipient" ToRole="User" />
+    <NavigationProperty Name="Suggestions" Relationship="GiftsModel.FK_Suggestion_Recipient" FromRole="Recipient" ToRole="Suggestion" />
   </EntityType>
   <EntityType Name="Suggestion">
     <Key>
@@ -54,7 +70,21 @@
     <Property Name="hobbies" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
     <Property Name="rating" Type="Int32" />
     <Property Name="priceTo" Type="Decimal" Nullable="false" Precision="13" Scale="4" />
+    <Property Name="idRecipient" Type="Int32" />
+    <Property Name="timeStamp" Type="DateTime" Precision="3" />
     <NavigationProperty Name="Gift" Relationship="GiftsModel.FK_Suggestion_Gift" FromRole="Suggestion" ToRole="Gift" />
+    <NavigationProperty Name="Recipient" Relationship="GiftsModel.FK_Suggestion_Recipient" FromRole="Suggestion" ToRole="Recipient" />
+    <NavigationProperty Name="User" Relationship="GiftsModel.FK_Suggestion_User" FromRole="Suggestion" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+    <Property Name="userName" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <Property Name="password" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+    <NavigationProperty Name="Recipients" Relationship="GiftsModel.FK_Recipient_User" FromRole="User" ToRole="Recipient" />
+    <NavigationProperty Name="Suggestions" Relationship="GiftsModel.FK_Suggestion_User" FromRole="User" ToRole="Suggestion" />
   </EntityType>
   <Association Name="FK_Suggestion_Gift">
     <End Role="Gift" Type="GiftsModel.Gift" Multiplicity="1" />
@@ -65,6 +95,42 @@
       </Principal>
       <Dependent Role="Suggestion">
         <PropertyRef Name="idGift" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Recipient_User">
+    <End Role="User" Type="GiftsModel.User" Multiplicity="1" />
+    <End Role="Recipient" Type="GiftsModel.Recipient" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Recipient">
+        <PropertyRef Name="idUser" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Suggestion_Recipient">
+    <End Role="Recipient" Type="GiftsModel.Recipient" Multiplicity="0..1" />
+    <End Role="Suggestion" Type="GiftsModel.Suggestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Recipient">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Suggestion">
+        <PropertyRef Name="idRecipient" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Suggestion_User">
+    <End Role="User" Type="GiftsModel.User" Multiplicity="0..1" />
+    <End Role="Suggestion" Type="GiftsModel.Suggestion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="Suggestion">
+        <PropertyRef Name="idUser" />
       </Dependent>
     </ReferentialConstraint>
   </Association>

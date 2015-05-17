@@ -14,8 +14,17 @@ namespace MvcApplication4.Models
     
     public partial class User
     {
+        public User()
+        {
+            this.Recipients = new HashSet<Recipient>();
+            this.Suggestions = new HashSet<Suggestion>();
+        }
+    
         public int id { get; set; }
         public string userName { get; set; }
         public string password { get; set; }
+    
+        public virtual ICollection<Recipient> Recipients { get; set; }
+        public virtual ICollection<Suggestion> Suggestions { get; set; }
     }
 }

@@ -10,6 +10,12 @@
 <table>
     <tr>
         <th>
+            Name
+        </th>
+        <th>
+            Surname
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.idGift)
         </th>
         <th>
@@ -31,6 +37,9 @@
             @Html.DisplayNameFor(model => model.hobbies)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.timeStamp)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.rating)
         </th>
         <th></th>
@@ -41,6 +50,12 @@
 @foreach (var item in Model) {
     if(userId == item.idUser){
     <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Recipient.name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Recipient.surname)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.Gift.name)
         </td>
@@ -62,6 +77,9 @@
         <td>
             @Html.DisplayFor(modelItem => item.hobbies)
         </td> 
+        <td>
+            @Html.DisplayFor(modelItem => item.timeStamp)
+        </td>
         @if(item.rating != null){     
         <td>
             @Html.DisplayFor(modelItem => item.rating)

@@ -31,6 +31,7 @@ namespace MvcApplication4.Models
         public int ageTo { get; set; }
         public string job { get; set; }
         public string hobbies { get; set; }
+        public int repetition { get; set; }
     
         public virtual ICollection<Suggestion> Suggestions { get; set; }
     }

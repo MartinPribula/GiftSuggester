@@ -39,7 +39,12 @@ namespace MvcApplication4.Models
         [Required]
         [Display(Name = "Im willing to pay this much")]
         public decimal priceTo { get; set; }
+        public Nullable<int> idRecipient { get; set; }
+        [Display(Name = "Date")]
+        public Nullable<System.DateTime> timeStamp { get; set; }
     
         public virtual Gift Gift { get; set; }
+        public virtual Recipient Recipient { get; set; }
+        public virtual User User { get; set; }
     }
 }

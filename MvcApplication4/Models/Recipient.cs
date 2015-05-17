@@ -15,8 +15,12 @@ namespace MvcApplication4.Models
     
     public partial class Recipient
     {
-        public int id { get; set; }
+        public Recipient()
+        {
+            this.Suggestions = new HashSet<Suggestion>();
+        }
 
+        public int id { get; set; }
         public int idUser { get; set; }
         [Required]
         [Display(Name = "Name")]
@@ -33,5 +37,8 @@ namespace MvcApplication4.Models
         [Required]
         [Display(Name = "Age")]
         public int age { get; set; }
+    
+        public virtual User User { get; set; }
+        public virtual ICollection<Suggestion> Suggestions { get; set; }
     }
 }

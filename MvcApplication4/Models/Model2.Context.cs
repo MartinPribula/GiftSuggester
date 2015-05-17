@@ -13,10 +13,10 @@ namespace MvcApplication4.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class SuggestEntities : DbContext
+    public partial class GifterEntities : DbContext
     {
-        public SuggestEntities()
-            : base("name=SuggestEntities")
+        public GifterEntities()
+            : base("name=GifterEntities")
         {
         }
     
@@ -28,5 +28,6 @@ namespace MvcApplication4.Models
         public DbSet<Gift> Gifts { get; set; }
         public DbSet<Recipient> Recipients { get; set; }
         public DbSet<Suggestion> Suggestions { get; set; }
+        public DbSet<User> Users { get; set; }
     }
 }
